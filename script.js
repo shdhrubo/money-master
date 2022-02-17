@@ -13,8 +13,14 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     else {
         previousTotalExpense.innerText = 00;
         const totalExpense = totalCalculatExpense();
-        previousTotalExpense.innerText = totalExpense;
-        balance.innerText = Number(income.value) - totalExpense;
+        const totalBalance = Number(income.value) - totalExpense;
+        if (totalBalance <= 0) {
+            alert('Dont expense more than Income');
+        }
+        else {
+            previousTotalExpense.innerText = totalExpense;
+            balance.innerText = totalBalance;
+        }
     }
     income.value = '';
     food.value = '';
@@ -27,8 +33,8 @@ function totalCalculatExpense() {
     return total;
 }
 //function to check integer
-function checkInteger(){
-  return  (Number(income.value) <= 0 || Number(food.value) <= 0 || Number(rent.value) <= 0 || Number(cloth.value) <= 0);
+function checkInteger() {
+    return (Number(income.value) <= 0 || Number(food.value) <= 0 || Number(rent.value) <= 0 || Number(cloth.value) <= 0);
 }
 
 ///save btn
