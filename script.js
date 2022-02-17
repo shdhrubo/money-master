@@ -1,31 +1,35 @@
+//global declearation 
 const previousTotalExpense = document.getElementById('total-expense');
-//expense total function
-function expenseTotal(item) {
-    const income = document.getElementById('income');
-    const incomeValueText = income.value;
-    const incomeValue = parseFloat(incomeValueText);
-    const expense = document.getElementById(item + '-expense');
-    const expenseValueText = expense.value;
-    const expenseValue = parseFloat(expenseValueText);
-    const totalExpenseText = previousTotalExpense.innerText;
-    const totalExpenseValue = parseFloat(totalExpenseText);
-    const total = expenseValue + totalExpenseValue;
-    previousTotalExpense.innerText = total;
-    const balance = document.getElementById('balance');
-    balance.innerText = incomeValue - total;
-    expense.value = '';
-
-}
-//calculate btn
+const balance = document.getElementById('balance');
+const income = document.getElementById('income');
+const food = document.getElementById('food-expense');
+const rent = document.getElementById('rent-expense');
+const cloth = document.getElementById('cloth-expense');
+//calculate button
 document.getElementById('calculate-btn').addEventListener('click', function () {
-    //expense items total
-    previousTotalExpense.innerText = 00;
-    expenseTotal('food');
-    expenseTotal('rent');
-    expenseTotal('cloth');
+    if (checkInteger()) {
+        alert('Enter positive value only!');
+    }
+    else {
+        previousTotalExpense.innerText = 00;
+        const totalExpense = totalCalculatExpense();
+        previousTotalExpense.innerText = totalExpense;
+        balance.innerText = Number(income.value) - totalExpense;
+    }
     income.value = '';
+    food.value = '';
+    rent.value = '';
+    cloth.value = '';
 })
-//error for calculate btn
+//function for calculate expense total
+function totalCalculatExpense() {
+    const total = Number(food.value) + Number(rent.value) + Number(cloth.value);
+    return total;
+}
+//function to check integer
+function checkInteger(){
+  return  (Number(income.value) <= 0 || Number(food.value) <= 0 || Number(rent.value) <= 0 || Number(cloth.value) <= 0);
+}
 
 ///save btn
 document.getElementById('save-btn').addEventListener('click', function () {
@@ -39,10 +43,6 @@ document.getElementById('save-btn').addEventListener('click', function () {
 
     else if (persent > 100) {
         alert('You can"t save more than you have!');
-        savePersent.value = '';
-    }
-    else if (isNaN(persent)==true) {
-        alert('Enter number,not string!');
         savePersent.value = '';
     }
     else {
