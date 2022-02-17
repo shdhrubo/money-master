@@ -32,16 +32,27 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const balanceTotal = balance.innerText;
     const savePersent = document.getElementById('save-input');
     const persent = savePersent.value;
-    const savingAmount = document.getElementById('saving-amount');
-    const savingBalance = (balanceTotal * persent) / 100;
-    if (savingBalance > balanceTotal) {
-        alert('You cant save more than you have');
+    if (persent < 0) {
+        alert('Enter positive numbers to save!');
+        savePersent.value = '';
+    }
+
+    else if (persent > 100) {
+        alert('You can"t save more than you have!');
+        savePersent.value = '';
+    }
+    else if (typeof (persent) != 'number') {
+        alert('Enter number,not string!');
+        savePersent.value = '';
     }
     else {
+        const savingAmount = document.getElementById('saving-amount');
+        const savingBalance = (balanceTotal * persent) / 100;
         savingAmount.innerText = savingBalance;
         const remainingAmount = document.getElementById('remaining-amount');
         const remaingBalance = balanceTotal - savingBalance;
         remainingAmount.innerText = remaingBalance;
+
     }
 
 })
