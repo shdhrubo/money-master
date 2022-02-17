@@ -25,9 +25,7 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     expenseTotal('cloth');
     income.value = '';
 })
-// function returnBalance(){
-//     return balance.innerText;
-// }
+//error for calculate btn
 
 ///save btn
 document.getElementById('save-btn').addEventListener('click', function () {
@@ -36,8 +34,14 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const persent = savePersent.value;
     const savingAmount = document.getElementById('saving-amount');
     const savingBalance = (balanceTotal * persent) / 100;
-    savingAmount.innerText = savingBalance;
-    const remainingAmount = document.getElementById('remaining-amount');
-    const remaingBalance = balanceTotal - savingBalance;
-    remainingAmount.innerText = remaingBalance;
+    if (savingBalance > balanceTotal) {
+        alert('You cant save more than you have');
+    }
+    else {
+        savingAmount.innerText = savingBalance;
+        const remainingAmount = document.getElementById('remaining-amount');
+        const remaingBalance = balanceTotal - savingBalance;
+        remainingAmount.innerText = remaingBalance;
+    }
+
 })
