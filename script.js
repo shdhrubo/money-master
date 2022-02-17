@@ -41,7 +41,7 @@ document.getElementById('save-btn').addEventListener('click', function () {
         alert('You can"t save more than you have!');
         savePersent.value = '';
     }
-    else if (typeof (persent) != 'number') {
+    else if (isNaN(persent)==true) {
         alert('Enter number,not string!');
         savePersent.value = '';
     }
