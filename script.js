@@ -29,3 +29,15 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
 //     return balance.innerText;
 // }
 
+///save btn
+document.getElementById('save-btn').addEventListener('click', function () {
+    const balanceTotal = balance.innerText;
+    const savePersent = document.getElementById('save-input');
+    const persent = savePersent.value;
+    const savingAmount = document.getElementById('saving-amount');
+    const savingBalance = (balanceTotal * persent) / 100;
+    savingAmount.innerText = savingBalance;
+    const remainingAmount = document.getElementById('remaining-amount');
+    const remaingBalance = balanceTotal - savingBalance;
+    remainingAmount.innerText = remaingBalance;
+})
